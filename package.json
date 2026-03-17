@@ -1,0 +1,15 @@
+{
+  "name": "vrchat-world-manager",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm -w apps/electron run dev",
+    "dev:noweb": "concurrently -n API,WEB -c blue,green \"npm -w apps/api run dev\" \"npm -w apps/web run dev\"",
+    "build": "npm -w apps/api run build && npm -w apps/web run build && npm -w apps/electron run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
