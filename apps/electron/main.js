@@ -6,13 +6,22 @@ let apiProcess = null;
 
 
 
-async function findPort() {
-    try {
-        const { default: getPort } = await import('get-port');
-        return await getPort({ port: 8787 });
-    } catch (e) {
-        return 8787;
+async function findPort(startPort = 8787, maxAttempts = 20) {
+    const net = require('net');
+
+    function isPortFree(port) {
+        return new Promise((resolve) => {
+            const server = net.createServer();
+            server.once('error', () => resolve(false));
+            server.once('listening', () => server.close(() => resolve(true)));
+            server.listen(port, '127.0.0.1');
+        });
     }
+
+    for (let port = startPort; port < startPort + maxAttempts; port++) {
+        if (await isPortFree(port)) return port;
+    }
+    return startPort;
 }
 
 

@@ -51,9 +51,7 @@
       "icon": "resources/icon.png"
     }
   },
-  "dependencies": {
-    "get-port": "^7.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "concurrently": "^8.2.0",
     "cross-env": "^7.0.3",
