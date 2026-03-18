@@ -16,6 +16,7 @@ import { WorldDetailModal } from "./components/WorldDetailModal";
 import { InstanceCreateModal } from "./components/InstanceCreateModal";
 import { CurrentInstanceModal } from "./components/CurrentInstanceModal";
 import { SettingsModal } from "./components/SettingsModal";
+import { TagCloud } from "./components/TagCloud";
 
 // Toast Notification System
 interface Toast {
@@ -209,7 +210,7 @@ export default function App() {
         counts[t] = (counts[t] || 0) + 1;
       });
     });
-    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return counts;
   }, [worldTags]);
 
   // ログイン
@@ -962,26 +963,13 @@ export default function App() {
               </div>
 
               {/* タグクラウド */}
-              {tagCounts.length > 0 && (
+              {Object.keys(tagCounts).length > 0 && (
                 <div className="sidebar-section" style={{ marginTop: 20 }}>
-                  <div className="sidebar-title">🏷️ タグで絞り込み</div>
-                  <div className="tag-cloud">
-                    <button
-                      className={`tag-cloud-item ${selectedTag === null ? "active" : ""}`}
-                      onClick={() => setSelectedTag(null)}
-                    >
-                      すべて
-                    </button>
-                    {tagCounts.map(([tag, count]) => (
-                      <button
-                        key={tag}
-                        className={`tag-cloud-item ${selectedTag === tag ? "active" : ""}`}
-                        onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                      >
-                        {tag} <span className="tag-count">{count}</span>
-                      </button>
-                    ))}
-                  </div>
+                  <TagCloud
+                    tagCounts={tagCounts}
+                    activeTag={selectedTag}
+                    onSelect={setSelectedTag}
+                  />
                 </div>
               )}
             </aside>
