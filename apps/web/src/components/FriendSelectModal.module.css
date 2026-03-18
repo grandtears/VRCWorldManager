@@ -1,0 +1,111 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 12px;
+  width: 440px;
+  max-width: 90vw;
+  max-height: 80vh;
+  padding: 24px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-title);
+}
+
+.actions button {
+  background: var(--bg-input);
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--bg-input);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.itemSelected {
+  background: rgba(34, 197, 94, 0.1);
+  border: 2px solid #22c55e;
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+}
+
+.footer .btn {
+  flex: 1;
+  padding: 12px;
+  font-weight: 700;
+}
+
+.footer .btn-primary {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+}
+
+.footer .btn-secondary {
+  background: var(--bg-input);
+  color: var(--text-muted);
+  border: none;
+  border-radius: 6px;
+}

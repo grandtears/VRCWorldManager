@@ -1235,36 +1235,6 @@ export default function App() {
                 ))}
               </div>
 
-              {/* もっと読む */}
-              {((activeTab === "recent" && recentHasMore) || 
-                (activeTab === "updated" && favHasMore) ||
-                (activeTab === "search_all" && searchHasMore) ||
-                (activeTab !== "recent" && activeTab !== "updated" && activeTab !== "search_all" && activeTab !== "custom" && favHasMore)) && (
-                <div style={{ marginTop: 24, paddingBottom: 24, textAlign: "center" }}>
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => {
-                      if (activeTab === "recent") {
-                        fetchRecentWorlds(false);
-                      } else if (activeTab === "updated") {
-                        fetchFavoriteWorlds(false, "");
-                      } else if (activeTab === "search_all") {
-                        fetchSearchWorlds(false);
-                      } else {
-                        const groupName = activeTab === "favorites_all" ? "" : activeTab.replace("fav_", "");
-                        fetchFavoriteWorlds(false, groupName);
-                      }
-                    }}
-                    disabled={isLoading}
-                    style={{ padding: "12px 32px", fontSize: "1rem" }}
-                  >
-                    {isLoading ? "読み込み中..." : "さらに100件読み込む（もっと読む）"}
-                  </button>
-                  <div style={{ fontSize: "0.85rem", color: "#888", marginTop: 8 }}>
-                    ※VRChat APIの仕様により、1回につき最大100件ずつ取得します。（VRC+の800件お気に入りも全て読み込み可能です）
-                  </div>
-                </div>
-              )}
 
               {/* 空の場合 */}
               {!isLoading && filteredWorlds.length === 0 && currentWorlds.length > 0 && (

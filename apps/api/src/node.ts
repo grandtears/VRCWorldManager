@@ -271,6 +271,7 @@ app.get("/worlds/favorites", async (c) => {
     const n = Number(c.req.query("n") ?? "100");
     const offset = Number(c.req.query("offset") ?? "0");
     const tag = c.req.query("tag") ?? "";
+    const sort = c.req.query("sort") ?? "";
 
     const safeN = Number.isFinite(n) ? Math.min(Math.max(n, 1), 100) : 100;
     const safeOffset = Number.isFinite(offset) ? Math.max(offset, 0) : 0;
@@ -299,12 +300,15 @@ app.get("/worlds/favorites", async (c) => {
                 updatedAt: w.updated_at,
                 createdAt: w.created_at,
                 platforms: (w.unityPackages ?? []).map((p: any) => p.platform),
-            }))
-            .sort((a: any, b: any) => {
+            }));
+
+        if (sort === "updated") {
+            worlds.sort((a: any, b: any) => {
                 const dateA = new Date(a.updatedAt || 0).getTime();
                 const dateB = new Date(b.updatedAt || 0).getTime();
                 return dateB - dateA;
             });
+        }
 
         const hasMore = (r.worlds?.length ?? 0) === safeN;
 

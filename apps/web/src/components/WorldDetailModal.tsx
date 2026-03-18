@@ -119,23 +119,21 @@ export function WorldDetailModal({ isOpen, onClose, world, userTags, customLists
                     overflowY: "auto",
                     background: "var(--bg-card)"
                 }}>
-                    <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: -10 }}>
+                    <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "8px" }}>
                         <button
                             onClick={onClose}
                             style={{
-                                background: "var(--bg-input)",
+                                background: "none",
                                 border: "none",
-                                borderRadius: "50%",
-                                width: 36,
-                                height: 36,
+                                fontSize: "32px",
+                                lineHeight: "1",
                                 cursor: "pointer",
-                                fontSize: "20px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
                                 color: "var(--text-muted)",
-                                transition: "all 0.2s"
+                                padding: 0,
+                                transition: "color 0.2s",
                             }}
+                            onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-title)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
                         >
                             &times;
                         </button>
