@@ -702,7 +702,7 @@ export default function App() {
         onClose={() => setShowCredits(false)}
       />
       <header className="app-header">
-        <h1 className="app-title">VRC World Manager</h1>
+        <h1 className="app-title">WorldNavi</h1>
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
           {state === "logged_in" && currentLocation && (
             <div 
@@ -768,7 +768,7 @@ export default function App() {
       {state === "idle" && (
         <div className="login-container">
           <div className="login-card">
-            <h1 style={{ margin: "0 0 10px", color: "#555", fontSize: "1.2rem" }}>VRC World Manager</h1>
+            <h1 style={{ margin: "0 0 10px", color: "#555", fontSize: "1.2rem" }}>WorldNavi</h1>
             <div className="login-title">ログイン</div>
 
             {error && (

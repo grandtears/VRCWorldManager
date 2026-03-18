@@ -1,17 +1,17 @@
 {
-  "name": "avaclo",
+  "name": "worldnavi",
   "private": true,
   "version": "1.0.0",
   "author": "Sonoty",
-  "description": "AvaClo(あばくろ) - VRChat Avatar Manager",
+  "description": "WorldNavi - VRChat World Manager",
   "main": "main.js",
   "scripts": {
     "dev": "concurrently \"npm run dev -w ../web\" \"npm run dev -w ../api\" \"wait-on tcp:5173 tcp:8787 && npx electron .\"",
     "build": "electron-builder build --win portable"
   },
   "build": {
-    "appId": "com.sonoty.avaclo",
-    "productName": "AvaClo(あばくろ)",
+    "appId": "com.sonoty.worldnavi",
+    "productName": "WorldNavi",
     "icon": "resources/icon.png",
     "electronVersion": "28.1.0",
     "npmRebuild": false,

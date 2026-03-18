@@ -15,10 +15,10 @@ const sessions = new Map<string, Session>();
 const VRC_BASE = "https://api.vrchat.cloud/api/1";
 
 // 環境変数でパス指定があればそちらを優先（Electron/Portable用）
-// Dev mode: use avaclo-sessions.json in release folder for consistency
+// Dev mode: use worldnavi-sessions.json in release folder for consistency
 const SESSION_FILE = process.env.VAM_SESSION_FILE
     ? path.resolve(process.env.VAM_SESSION_FILE)
-    : path.resolve(process.cwd(), "..", "electron", "release", "avaclo-sessions.json");
+    : path.resolve(process.cwd(), "..", "electron", "release", "worldnavi-sessions.json");
 
 const USER_AGENT = "VRChatWorldManager/0.1";
 

@@ -40,7 +40,7 @@ async function getOrInitSecret(dataDir) {
         return null;
     }
 
-    const secretFile = path.join(dataDir, "avaclo-secret.key");
+    const secretFile = path.join(dataDir, "worldnavi-secret.key");
 
     if (fs.existsSync(secretFile)) {
         // 既存キーのロード
@@ -92,8 +92,8 @@ async function createWindow() {
             dataDir = app.getPath('userData');
         }
 
-        const sessionFile = path.join(dataDir, "avaclo-sessions.json");
-        const settingsFile = path.join(dataDir, "avaclo-settings.json");
+        const sessionFile = path.join(dataDir, "worldnavi-sessions.json");
+        const settingsFile = path.join(dataDir, "worldnavi-settings.json");
         const webDir = path.join(__dirname, "web");
 
         // マスターキー準備
@@ -128,7 +128,7 @@ async function createWindow() {
         },
         autoHideMenuBar: true,
         backgroundColor: "#eff6ff",
-        title: "AvaClo(あばくろ)",
+        title: "WorldNavi",
         icon: path.join(__dirname, 'resources/icon.png')
     });
 

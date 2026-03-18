@@ -78,7 +78,7 @@ import fs from "node:fs";
 import path from "node:path";
 const SETTINGS_FILE = process.env.VAM_SETTINGS_FILE
     ? path.resolve(process.env.VAM_SETTINGS_FILE)
-    : path.resolve(process.cwd(), "..", "electron", "release", "avaclo-settings.json");
+    : path.resolve(process.cwd(), "..", "electron", "release", "worldnavi-settings.json");
 
 const SETTINGS_BACKUP = SETTINGS_FILE + ".bak";
 const SETTINGS_TEMP = SETTINGS_FILE + ".tmp";
