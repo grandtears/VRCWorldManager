@@ -353,10 +353,12 @@ body {
 .search-input {
   flex: 1;
   padding: 10px 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-main);
   border-radius: 8px;
   font-size: 0.95rem;
   transition: all 0.2s;
+  background: var(--bg-input);
+  color: var(--text-main);
 }
 
 .search-input:focus {
@@ -432,7 +434,7 @@ body {
 
 .login-input:focus {
   border-color: #2196f3;
-  background: #fff;
+  background: var(--bg-input);
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
   outline: none;
 }

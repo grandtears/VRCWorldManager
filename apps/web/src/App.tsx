@@ -112,11 +112,19 @@ export default function App() {
 
   // 検索フィルタ（ローカル用：最近・お気に入りタブで使用）
   const filteredWorlds = useMemo(() => {
-    let list = currentWorlds;
+    let list: World[];
 
-    // タグフィルタ
+    // タグ選択中はタブに関わらず全ワールドから横断検索
     if (selectedTag) {
-      list = list.filter(w => (worldTags[w.id] || []).includes(selectedTag));
+      const allCustomWorlds = customLists.flatMap(l => l.worlds);
+      const seen = new Set<string>();
+      list = [...recentWorlds, ...favoriteWorlds, ...allCustomWorlds].filter(w => {
+        if (seen.has(w.id)) return false;
+        seen.add(w.id);
+        return (worldTags[w.id] || []).includes(selectedTag);
+      });
+    } else {
+      list = currentWorlds;
     }
 
     // 検索語フィルタ
@@ -126,7 +134,7 @@ export default function App() {
       w.name.toLowerCase().includes(q) ||
       w.authorName.toLowerCase().includes(q)
     );
-  }, [currentWorlds, query, selectedTag, worldTags]);
+  }, [currentWorlds, recentWorlds, favoriteWorlds, customLists, query, selectedTag, worldTags]);
 
   // タグクラウドのデータ集計
   useEffect(() => {
@@ -1006,7 +1014,7 @@ export default function App() {
                 </div>
               </div>
 
-              {activeTab === "log_history" ? (
+              {activeTab === "log_history" && !selectedTag ? (
                 <div style={{ padding: "0 0 20px" }}>
                   <h2 style={{ marginBottom: 20, fontSize: "1.25rem", display: "flex", alignItems: "center", gap: 10 }}>🕒 訪問ログ (直近10件) <button className="btn btn-secondary btn-sm" onClick={fetchLogHistory}>🔄 更新</button></h2>
                   {logHistory.length === 0 ? (
@@ -1035,7 +1043,7 @@ export default function App() {
               ) : (
                 <>
                   {/* 検索バー（ローカルフィルタ） */}
-                  {activeTab !== "search_all" && activeTab !== "custom" && (
+                  {(selectedTag || (activeTab !== "search_all" && activeTab !== "custom")) && (
                     <div style={{ marginBottom: 16 }}>
                       <input
                         className="search-input"
